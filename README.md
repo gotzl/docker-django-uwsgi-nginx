@@ -6,9 +6,9 @@ based off of debian:buster
 
 To buid this image with your django app:
 ```bash
-git clone git@github.com:mbentley/docker-django-uwsgi-nginx.git
+git clone https://github.com/gotzl/docker-django-uwsgi-nginx.git
 cd docker-django-uwsgi-nginx
-cp -a __myapp__/* app/
+cp -a ../__myapp__/* app/
 docker build -t docker-django .
 ```
 There are two build arguments (--build-arg ARG=VAL):
