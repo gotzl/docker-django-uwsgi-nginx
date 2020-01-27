@@ -1,16 +1,20 @@
-mbentley/django-uwsgi-nginx
+gotzl/docker-django-uwsgi-nginx
 ==================
 
-docker image for django (uwsgi) & nginx
-based off of debian:jessie
+Docker image for django (uwsgi) & nginx, forked from [mbentley/docker-django-uwsgi-nginx](https://github.com/mbentley/docker-django-uwsgi-nginx)
+based off of debian:buster
 
-To pull this image:
-`docker pull mbentley/django-uwsgi-nginx`
+To buid this image with your django app:
+```bash
+git clone git@github.com:mbentley/docker-django-uwsgi-nginx.git
+cd docker-django-uwsgi-nginx
+cp -a __myapp__/* app/
+docker build -t docker-django .
+```
+There are two build arguments (--build-arg ARG=VAL):
+* ldap=true: includes ldap facilities in the image, makeing it possible to use django-auth-ldap for authentication
+* latex=true: includes latex compiler in the image
 
 Example usage:
-`docker run -p 80 -d -e MODULE=myapp mbentley/django-uwsgi-nginx`
-
-You can mount the application volume to run a specific application.  The default volume inside in the container is `/opt/django/app`.  Here is an example:
-`docker run -p 80 -d -e MODULE=myapp -v /home/mbentley/myapp:/opt/django/app mbentley/django-uwsgi-nginx`
-
-By default, this just runs a default 'welcome to django' project.
+`docker run -p 80:80 -d -e MODULE=myapp docker-django`
+where `myapp` is your django application name.
