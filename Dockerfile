@@ -5,7 +5,7 @@ ARG ldap=false
 ARG latex=false
 
 RUN (apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  build-essential git python3 python3-dev python3-pip nginx sqlite3 tzdata gettext)
+  build-essential git python3 python3-dev python3-pip nginx sqlite3 libpq-dev postgresql-client  tzdata gettext)
 RUN (test ! "$ldap" = "true" || DEBIAN_FRONTEND=noninteractive apt-get install -y libsasl2-dev python3-dev libldap2-dev libssl-dev)
 RUN (test ! "$latex" = "true" || DEBIAN_FRONTEND=noninteractive apt-get install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-lang-german && \
   rm -rf /var/lib/apt/lists/*)
